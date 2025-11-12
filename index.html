@@ -1,43 +1,118 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>My GitHub Pages Site</title>
-
-  <meta name="description" content="A simple portfolio/landing page hosted for free on GitHub Pages.">
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>How to Host a Free Website on GitHub Pages</title>
+  <style>
+    :root { --bg:#f7fbff; --card:#ffffff; --muted:#6b7280; --accent:#0366d6; --radius:12px; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+    body{margin:0;background:var(--bg);color:#0f172a;line-height:1.55}
+    .wrap{max-width:900px;margin:40px auto;padding:28px}
+    header{display:flex;gap:18px;align-items:center}
+    h1{margin:0;font-size:1.6rem}
+    p.lead{margin:6px 0 18px;color:var(--muted)}
+    .card{background:var(--card);border-radius:var(--radius);box-shadow:0 6px 18px rgba(12,22,44,0.06);padding:22px;margin:18px 0}
+    h2{margin:0 0 8px;font-size:1.05rem}
+    ol{padding-left:20px}
+    pre{background:#0b1220;color:#f8fafc;padding:12px;border-radius:8px;overflow:auto;font-family: Menlo,Monaco,Consolas,"Courier New",monospace;font-size:0.95rem}
+    code{font-family:Menlo,Monaco,Consolas,"Courier New",monospace}
+    .note{background:#fffbeb;border-left:4px solid #f59e0b;padding:10px;border-radius:6px;color:#92400e}
+    .muted{color:var(--muted);font-size:0.95rem}
+    .footer{margin-top:14px;font-size:0.9rem;color:var(--muted)}
+    a.button{display:inline-block;padding:10px 14px;background:var(--accent);color:#fff;border-radius:10px;text-decoration:none}
+    @media (max-width:640px){.wrap{padding:18px;margin:18px}}
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <h1>Welcome to My Site</h1>
-    <p class="subtitle">Hosted for free on GitHub Pages</p>
-  </header>
+  <div class="wrap">
+    <header>
+      <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#e6f0ff,#eaf8ff);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)">GH</div>
+      <div>
+        <h1>How to Host a Free Website on GitHub Pages</h1>
+        <p class="lead">A compact, copy-ready guide you can put on a handout or upload directly as an HTML page.</p>
+      </div>
+    </header>
 
-  <main class="content">
-    <section>
-      <h2>About this site</h2>
-      <p>This website is created using HTML and CSS and hosted for free on <b>GitHub Pages</b>.  
-         You can use it for your personal portfolio, project showcase, or documentation.</p>
-    </section>
+    <div class="card">
+      <h2>1. Create a GitHub Account</h2>
+      <p class="muted">Sign up at <a href="https://github.com" target="_blank">github.com</a> if you don’t already have an account. It’s free.</p>
+    </div>
 
-    <section>
-      <h2>Projects</h2>
+    <div class="card">
+      <h2>2. Create a New Repository</h2>
+      <ol>
+        <li>Click <strong>New repository</strong>.</li>
+        <li>Name it exactly <code>username.github.io</code> (replace <em>username</em> with your GitHub username).</li>
+        <li>Set visibility to <strong>Public</strong> and initialize with a README.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>3. Add Your Website Files</h2>
+      <p class="muted">Upload your site files (HTML, CSS, JS). Two common ways:</p>
       <ul>
-        <li><a href="#">Project A</a></li>
-        <li><a href="#">Project B</a></li>
+        <li><strong>Web interface:</strong> Drag-and-drop files into the repo.</li>
+        <li><strong>Git (recommended for updates):</strong> Use the commands below from your project folder.</li>
       </ul>
-    </section>
-  </main>
+      <pre><code># initialize a repo (if you haven't already)
+git init
+git add .
+git commit -m "Initial commit"
 
-  <footer class="site-footer">
-    <p>© <span id="year"></span> Your Name</p>
-  </footer>
+# add remote (replace USERNAME)
+git remote add origin https://github.com/USERNAME/USERNAME.github.io.git
 
-  <script>
-    // Automatically update year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+git branch -M main
+git push -u origin main
+</code></pre>
+      <p class="muted">Make sure your homepage file is named <code>index.html</code>.</p>
+    </div>
+
+    <div class="card">
+      <h2>4. Enable GitHub Pages</h2>
+      <ol>
+        <li>Open the repo on GitHub and go to <strong>Settings → Pages</strong>.</li>
+        <li>Under <strong>Source</strong>, pick the branch (usually <code>main</code>) and the <strong>root</strong> folder.</li>
+        <li>Save. GitHub will publish your site at <code>https://username.github.io</code>.</li>
+      </ol>
+      <p class="note">It may take a minute or two for the site to become live. If you see a 404 right away, wait a bit and refresh.</p>
+    </div>
+
+    <div class="card">
+      <h2>5. (Optional) Connect a Custom Domain</h2>
+      <p class="muted">If you own a domain (e.g., <code>mywebsite.com</code>), you can point it to GitHub Pages:</p>
+      <ol>
+        <li>Buy a domain from a registrar (Namecheap, GoDaddy, etc.).</li>
+        <li>Create a file named <code>CNAME</code> in your repo with your domain name as its only content, e.g. <code>mywebsite.com</code>.</li>
+        <li>At your registrar, add DNS records (A or ALIAS/ANAME or CNAME depending on setup) to point to GitHub’s servers. See GitHub Pages docs for exact records.</li>
+      </ol>
+      <pre><code># CNAME file content (one line):
+mywebsite.com
+</code></pre>
+      <p class="muted">GitHub Pages supports HTTPS for custom domains — GitHub will provision a certificate after DNS is correctly set up.</p>
+    </div>
+
+    <div class="card">
+      <h2>Key Points</h2>
+      <ul>
+        <li><strong>Free option:</strong> your site lives at <code>username.github.io</code>.</li>
+        <li><strong>Custom domain:</strong> requires buying a domain; GitHub Pages supports it.</li>
+        <li><strong>Best use cases:</strong> portfolios, docs, static sites, blogs (with Jekyll).</li>
+        <li><strong>Limitations:</strong> GitHub Pages only hosts static sites — no server-side languages (PHP, databases).</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Example</h2>
+      <p class="muted">If your GitHub username is <strong>jerwin123</strong> and your repo is <code>jerwin123.github.io</code>, your site will be available at:</p>
+      <pre><code>https://jerwin123.github.io</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>Want this as separate files?</h2>
+      <p class="muted">This single HTML file includes styles for quick preview. If you prefer separate <code>index.html</code> and <code>style.css</code> files or a ready-to-push Git repo structure, tell me which option and I will prepare them.</p>
+      <p class="footer">Made with ♥ — copy, paste, and upload to your GitHub repository.</p>
+    </div>
+  </div>
 </body>
 </html>
-
